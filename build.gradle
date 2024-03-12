@@ -3,6 +3,8 @@ plugins {
     id 'application'
 }
 
+apply plugin: 'maven-publish'
+
 group = 'org.libDep1'
 version = '1.0-SNAPSHOT'
 
@@ -27,4 +29,24 @@ application {
 
 test {
     useJUnitPlatform()
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            artifact("build/libs/lib-dep-1-${version}.jar") {
+                extension 'jar'
+            }
+        }
+    }
+    repositories {
+        maven {
+          name 'nexus'
+            url "https://nexus.kingq12024.sa-demo.beescloud.com/repository/maven-releases/"
+            credentials {
+                username project.repoUser
+                password project.repoPassword
+            }
+        }
+    }
 }
