@@ -38,6 +38,7 @@ sonar {
         property 'sonar.organization', 'king'
         property 'sonar.host.url', ' https://sonarqube.kingq12024.sa-demo.beescloud.com/'
         property 'sonar.token', 'sqa_7e6d65b9f302f6d68761a5d70e4ab9e5786ff085'
+        property 'sonar.gradle.skipCompile', true
     }
 }
 
