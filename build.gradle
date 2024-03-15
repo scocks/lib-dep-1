@@ -6,7 +6,7 @@ plugins {
 
 apply plugin: 'maven-publish'
 
-group = 'org.king'
+group = 'org.king.libDep1'
 version = '1.0-SNAPSHOT'
 
 repositories {

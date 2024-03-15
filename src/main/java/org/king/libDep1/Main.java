@@ -1,4 +1,4 @@
-package org.king;
+package org.king.libDep1;
 
 public class Main {
     public static void main(String[] args) {
