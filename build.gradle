@@ -6,8 +6,8 @@ plugins {
 
 apply plugin: 'maven-publish'
 
-group = 'org.libDep1'
-version = '1.1-SNAPSHOT'
+group = 'org.king'
+version = '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
@@ -20,13 +20,6 @@ dependencies {
 }
 
 apply plugin : "java"
-ext {
-    javaMainClass = "org.libDep1.Main"
-}
-
-application {
-    mainClassName = javaMainClass
-}
 
 test {
     useJUnitPlatform()
