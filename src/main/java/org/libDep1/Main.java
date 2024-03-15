@@ -7,6 +7,6 @@ public class Main {
         for (int i = 0; i < 10; i++) {
             System.out.println(result[i]);
         }
-        System.out.println("Steven");
+        System.out.println("lib-dep-1");
     }
 }
