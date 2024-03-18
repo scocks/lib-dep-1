@@ -23,12 +23,30 @@ pipeline {
         }
         stage('Build and Test') {
             steps {
+                container('my-java-app') {                                        
+                    sh """
+                    ./gradlew clean build test
+                    """                    
+                }
+            }
+        }
+        stage('Sonar') {
+            steps {
+                container('my-java-app') {                    
+                    sh """
+                    ./gradlew sonar
+                    """
+                }
+            }
+        }
+        stage('Publish') {
+            steps {
                 container('my-java-app') {                    
                     withCredentials([usernamePassword(credentialsId: 'nexus-admin-cred', passwordVariable: 'repoPassword', usernameVariable: 'repoUser')]) {
                        sh """
                        echo "repoUser=${repoUser}" > gradle.properties
                        echo "repoPassword=${repoPassword}" >> gradle.properties
-                       ./gradlew clean build test sonar publish
+                       ./gradlew publish
                        """
                     }
                 }
