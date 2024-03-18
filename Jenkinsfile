@@ -21,6 +21,18 @@ pipeline {
                 git (url : "git@github.com:scocks/lib-dep-1.git", credentialsId : "scocks", branch : "main")
             }
         }
+        stage('Generate Properties') {
+            steps {
+                container('my-java-app') {                    
+                    withCredentials([usernamePassword(credentialsId: 'nexus-admin-cred', passwordVariable: 'repoPassword', usernameVariable: 'repoUser')]) {
+                       sh """
+                       echo "repoUser=${repoUser}" > gradle.properties
+                       echo "repoPassword=${repoPassword}" >> gradle.properties
+                       """
+                    }
+                }
+            }
+        }
         stage('Build and Test') {
             steps {
                 container('my-java-app') {                                        
@@ -42,13 +54,9 @@ pipeline {
         stage('Publish') {
             steps {
                 container('my-java-app') {                    
-                    withCredentials([usernamePassword(credentialsId: 'nexus-admin-cred', passwordVariable: 'repoPassword', usernameVariable: 'repoUser')]) {
-                       sh """
-                       echo "repoUser=${repoUser}" > gradle.properties
-                       echo "repoPassword=${repoPassword}" >> gradle.properties
-                       ./gradlew publish
-                       """
-                    }
+                    sh """
+                    ./gradlew publish
+                    """
                 }
             }
         }
