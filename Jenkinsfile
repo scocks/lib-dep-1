@@ -8,7 +8,7 @@ pipeline {
                 kind: Pod
                 spec:
                   containers:
-                    - name: my-java-app
+                    - name: jdk17
                       image: openjdk:17-jdk
                       command: ['cat']
                       tty: true
@@ -23,7 +23,7 @@ pipeline {
         }
         stage('Generate Properties') {
             steps {
-                container('my-java-app') {                    
+                container('jdk17') {                    
                     withCredentials([usernamePassword(credentialsId: 'nexus-admin-cred', passwordVariable: 'repoPassword', usernameVariable: 'repoUser')]) {
                        sh """
                        echo "repoUser=${repoUser}" > gradle.properties
@@ -35,7 +35,7 @@ pipeline {
         }
         stage('Build and Test') {
             steps {
-                container('my-java-app') {                                        
+                container('jdk17') {                                        
                     sh """
                     ./gradlew clean build test
                     """                    
@@ -44,7 +44,7 @@ pipeline {
         }
         stage('Sonar') {
             steps {
-                container('my-java-app') {                    
+                container('jdk17') {                    
                     sh """
                     ./gradlew sonar
                     """
