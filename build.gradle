@@ -1,16 +1,8 @@
 plugins {
     id 'java'
-    id 'application'
     id 'org.sonarqube' version '4.4.1.3373'
     id 'jacoco'
-}
-
-apply plugin : 'maven-publish'
-apply plugin : "java"
-apply plugin : "jacoco"
-
-jacoco {
-  toolVersion = '0.8.1'
+    id 'maven-publish'
 }
 
 group = 'org.king.libDep1'
@@ -25,9 +17,11 @@ dependencies {
     testImplementation platform('org.junit:junit-bom:5.9.1')
     testImplementation 'org.junit.jupiter:junit-jupiter'
 }
+
 test {
     useJUnitPlatform()
 }
+
 jacocoTestReport {    
     reports {
         xml.required = true    
