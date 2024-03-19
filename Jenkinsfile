@@ -53,7 +53,7 @@ pipeline {
         }
         stage('Publish') {
             steps {
-                container('my-java-app') {                    
+                container('jdk17') {                    
                     sh """
                     ./gradlew publish
                     """
