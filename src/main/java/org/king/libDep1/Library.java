@@ -1,12 +1,5 @@
 package org.king.libdep1;
-public class Library {
-    public String[] count(Integer number) {
-        String[] lines = new String[number];
-        for (int i = 0; i < number; i++) {
-            lines[i] = "count from libdep1: i = " + i;
-        }
-        return lines;
-    }
+public class Library {    
     public String greet(String name) {
         return "greet from libdep1, " + name + "!";
     }

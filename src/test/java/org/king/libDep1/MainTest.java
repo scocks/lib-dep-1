@@ -4,16 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class MainTest {
-    @Test
-    void testCount() {
-        Library library = new Library();
-        String[] result = library.count(10);
-        assertEquals(10, result.length);
-        for (int i = 0; i < 10; i++) {
-            assertEquals("count from libdep1: i = " + i, result[i]);
-        }
-    }
+class MainTest {    
     @Test
     void testGreet() {
         Library library = new Library();
