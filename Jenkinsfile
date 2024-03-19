@@ -18,7 +18,7 @@ pipeline {
     stages {
         stage('Clone Repo') {
             steps {
-                git (url : "git@github.com:scocks/lib-dep-1.git", credentialsId : "scocks", branch : "main")
+                git (url: "git@github.com:scocks/lib-dep-1.git", credentialsId: "scocks", branch: "main")
             }
         }
         stage('Generate Properties') {
