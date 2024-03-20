@@ -15,12 +15,7 @@ pipeline {
             """
         }
     }
-    stages {
-        stage('Clone Repo') {
-            steps {
-                git (url: "git@github.com:scocks/lib-dep-1.git", credentialsId: "scocks", branch: "main")
-            }
-        }
+    stages {        
         stage('Generate Properties') {
             steps {
                 container('jdk17') {                    
