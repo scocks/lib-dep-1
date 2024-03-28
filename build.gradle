@@ -5,8 +5,14 @@ plugins {
     id 'maven-publish'
 }
 
+def loadVersion() {
+    def properties = new Properties()
+    file("version.properties").withInputStream { properties.load(it) }
+    return properties['version']
+}
+
 group = 'org.king.libDep1'
-version = '1.0-SNAPSHOT'
+version = "${loadVersion()}"
 
 repositories {
     mavenCentral()
