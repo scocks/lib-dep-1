@@ -2,17 +2,13 @@ plugins {
     id 'java'
     id 'org.sonarqube' version '4.4.1.3373'
     id 'jacoco'
-    id 'maven-publish'
-}
-
-def loadVersion() {
-    def properties = new Properties()
-    file("version.properties").withInputStream { properties.load(it) }
-    return properties['version']
+    id 'maven-publish'    
 }
 
 group = 'org.king.libDep1'
-version = "${loadVersion()}"
+version = "1.0.0-SNAPSHOT"
+
+apply plugin: "com.dipien.semantic-version"
 
 repositories {
     mavenCentral()
